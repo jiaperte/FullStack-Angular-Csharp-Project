@@ -1,0 +1,88 @@
+<div class="panel panel-default">
+  <div class="panel-heading"></div>
+
+  <div class="panel-body ">
+    <form [formGroup]="trainingForm" (ngSubmit)="onTrainningDateSubmit()">
+      <div class="form-group">
+        <label for="name">Traning Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="trainingName"
+          name="trainingName"
+          formControlName="trainingName"
+          required
+        />
+        <div
+          *ngIf="
+            trainingName.invalid && (trainingName.dirty || trainingName.touched)
+          "
+          class="text-danger"
+        >
+          <div *ngIf="trainingName.errors.required">
+            {{ nameRequiredMessage }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="start">Start Date:</label>
+        <input
+          type="date"
+          class="form-control"
+          id="dateOfStart"
+          name="dateOfStart"
+          formControlName="dateOfStart"
+          required
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            dateOfStart.errors &&
+            (dateOfStart.dirty || dateOfStart.errors.validDate)
+          "
+        >
+          {{ startDateInValidMessage }}
+        </div>
+        <div *ngIf="dateOfStart.errors?.required">
+          {{ startTimeRequiredMessage }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="end">End Date:</label>
+        <input
+          type="date"
+          class="form-control"
+          id="dateOfEnd"
+          name="dateOfEnd"
+          formControlName="dateOfEnd"
+          required
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            dateOfEnd.errors && (dateOfEnd.dirty || dateOfEnd.errors.validDate)
+          "
+        >
+          {{ endDateInValidMessage }}
+        </div>
+        <div *ngIf="dateOfEnd.errors?.required">
+          {{ endTimeRequiredMessage }}
+        </div>
+        <div class="text-danger" *ngIf="endBeforeStartError.isError">
+          {{ endBeforeStartError.errorMessage }}
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        id="confirm"
+        [disabled]="trainingForm.invalid"
+      >
+        Confirm
+      </button>
+    </form>
+  </div>
+</div>
