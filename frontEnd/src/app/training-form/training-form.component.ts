@@ -37,10 +37,7 @@ export class TrainingFormComponent implements OnInit {
     return this.trainingForm.get("dateOfEnd");
   }
 
-  constructor(
-    private httpClient: HttpClient,
-    private trainingInfo: TrainingInfo
-  ) {
+  constructor(private httpClient: HttpClient) {
     //get date of today
     let dp = new DatePipe(navigator.language);
     let p = "y-MM-dd"; // YYYY-MM-DD
