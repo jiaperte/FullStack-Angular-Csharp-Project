@@ -17,7 +17,7 @@ const httpOptions = {
     "Content-Type": "application/json"
   })
 };
-const postUrl: string = "http://192.168.1.115:60208/api/traininginfo";
+const postUrl: string = "http://192.168.1.115:55191/api/traininginfo";
 
 @Component({
   selector: "app-training-form",
@@ -37,7 +37,10 @@ export class TrainingFormComponent implements OnInit {
     return this.trainingForm.get("dateOfEnd");
   }
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private trainingInfo: TrainingInfo
+  ) {
     //get date of today
     let dp = new DatePipe(navigator.language);
     let p = "y-MM-dd"; // YYYY-MM-DD
